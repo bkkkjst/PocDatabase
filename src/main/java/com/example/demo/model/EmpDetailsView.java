@@ -1,63 +1,66 @@
-package model;
+package com.example.demo.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
 
+import java.math.BigDecimal;
+
 
 /**
- * The persistent class for the emp_details_view database table.
+ * The persistent class for the EMP_DETAILS_VIEW database table.
  * 
  */
 @Entity
-@Table(name="emp_details_view")
+@Table(name="EMP_DETAILS_VIEW")
 @NamedQuery(name="EmpDetailsView.findAll", query="SELECT e FROM EmpDetailsView e")
 public class EmpDetailsView implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String city;
 
-	@Column(name="commission_pct")
-	private float commissionPct;
+	@Column(name="COMMISSION_PCT")
+	private BigDecimal commissionPct;
 
-	@Column(name="country_id")
+	@Column(name="COUNTRY_ID")
 	private String countryId;
 
-	@Column(name="country_name")
+	@Column(name="COUNTRY_NAME")
 	private String countryName;
 
-	@Column(name="department_id")
-	private Integer departmentId;
+	@Column(name="DEPARTMENT_ID")
+	private BigDecimal departmentId;
 
-	@Column(name="department_name")
+	@Column(name="DEPARTMENT_NAME")
 	private String departmentName;
 
-	@Column(name="employee_id")
-	private Integer employeeId;
+	@Id
+	@Column(name="EMPLOYEE_ID")
+	private BigDecimal employeeId;
 
-	@Column(name="first_name")
+	@Column(name="FIRST_NAME")
 	private String firstName;
 
-	@Column(name="job_id")
+	@Column(name="JOB_ID")
 	private String jobId;
 
-	@Column(name="job_title")
+	@Column(name="JOB_TITLE")
 	private String jobTitle;
 
-	@Column(name="last_name")
+	@Column(name="LAST_NAME")
 	private String lastName;
 
-	@Column(name="location_id")
-	private Integer locationId;
+	@Column(name="LOCATION_ID")
+	private BigDecimal locationId;
 
-	@Column(name="manager_id")
-	private Integer managerId;
+	@Column(name="MANAGER_ID")
+	private BigDecimal managerId;
 
-	@Column(name="region_name")
+	@Column(name="REGION_NAME")
 	private String regionName;
 
-	private double salary;
+	private BigDecimal salary;
 
-	@Column(name="state_province")
+	@Column(name="STATE_PROVINCE")
 	private String stateProvince;
 
 	public EmpDetailsView() {
@@ -71,11 +74,11 @@ public class EmpDetailsView implements Serializable {
 		this.city = city;
 	}
 
-	public float getCommissionPct() {
+	public BigDecimal getCommissionPct() {
 		return this.commissionPct;
 	}
 
-	public void setCommissionPct(float commissionPct) {
+	public void setCommissionPct(BigDecimal commissionPct) {
 		this.commissionPct = commissionPct;
 	}
 
@@ -95,11 +98,11 @@ public class EmpDetailsView implements Serializable {
 		this.countryName = countryName;
 	}
 
-	public Integer getDepartmentId() {
+	public BigDecimal getDepartmentId() {
 		return this.departmentId;
 	}
 
-	public void setDepartmentId(Integer departmentId) {
+	public void setDepartmentId(BigDecimal departmentId) {
 		this.departmentId = departmentId;
 	}
 
@@ -111,11 +114,11 @@ public class EmpDetailsView implements Serializable {
 		this.departmentName = departmentName;
 	}
 
-	public Integer getEmployeeId() {
+	public BigDecimal getEmployeeId() {
 		return this.employeeId;
 	}
 
-	public void setEmployeeId(Integer employeeId) {
+	public void setEmployeeId(BigDecimal employeeId) {
 		this.employeeId = employeeId;
 	}
 
@@ -151,19 +154,19 @@ public class EmpDetailsView implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Integer getLocationId() {
+	public BigDecimal getLocationId() {
 		return this.locationId;
 	}
 
-	public void setLocationId(Integer locationId) {
+	public void setLocationId(BigDecimal locationId) {
 		this.locationId = locationId;
 	}
 
-	public Integer getManagerId() {
+	public BigDecimal getManagerId() {
 		return this.managerId;
 	}
 
-	public void setManagerId(Integer managerId) {
+	public void setManagerId(BigDecimal managerId) {
 		this.managerId = managerId;
 	}
 
@@ -175,11 +178,11 @@ public class EmpDetailsView implements Serializable {
 		this.regionName = regionName;
 	}
 
-	public double getSalary() {
+	public BigDecimal getSalary() {
 		return this.salary;
 	}
 
-	public void setSalary(double salary) {
+	public void setSalary(BigDecimal salary) {
 		this.salary = salary;
 	}
 

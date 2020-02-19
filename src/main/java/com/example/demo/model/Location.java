@@ -1,4 +1,4 @@
-package model;
+package com.example.demo.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -6,47 +6,45 @@ import java.util.List;
 
 
 /**
- * The persistent class for the locations database table.
+ * The persistent class for the LOCATIONS database table.
  * 
  */
 @Entity
-@Table(name="locations")
+@Table(name="LOCATIONS")
 @NamedQuery(name="Location.findAll", query="SELECT l FROM Location l")
 public class Location implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="location_id")
-	private Integer locationId;
+	@Column(name="LOCATION_ID")
+	private long locationId;
 
 	private String city;
 
-	@Column(name="postal_code")
+	@Column(name="COUNTRY_ID")
+	private String countryId;
+
+	@Column(name="POSTAL_CODE")
 	private String postalCode;
 
-	@Column(name="state_province")
+	@Column(name="STATE_PROVINCE")
 	private String stateProvince;
 
-	@Column(name="street_address")
+	@Column(name="STREET_ADDRESS")
 	private String streetAddress;
 
 	//bi-directional many-to-one association to Department
 	@OneToMany(mappedBy="location")
 	private List<Department> departments;
 
-	//bi-directional many-to-one association to Country
-	@ManyToOne
-	@JoinColumn(name="country_id")
-	private Country country;
-
 	public Location() {
 	}
 
-	public Integer getLocationId() {
+	public long getLocationId() {
 		return this.locationId;
 	}
 
-	public void setLocationId(Integer locationId) {
+	public void setLocationId(long locationId) {
 		this.locationId = locationId;
 	}
 
@@ -56,6 +54,14 @@ public class Location implements Serializable {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public String getCountryId() {
+		return this.countryId;
+	}
+
+	public void setCountryId(String countryId) {
+		this.countryId = countryId;
 	}
 
 	public String getPostalCode() {
@@ -102,14 +108,6 @@ public class Location implements Serializable {
 		department.setLocation(null);
 
 		return department;
-	}
-
-	public Country getCountry() {
-		return this.country;
-	}
-
-	public void setCountry(Country country) {
-		this.country = country;
 	}
 
 }

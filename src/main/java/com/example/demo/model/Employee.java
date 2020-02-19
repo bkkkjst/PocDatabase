@@ -1,43 +1,45 @@
-package model;
+package com.example.demo.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 
 /**
- * The persistent class for the employees database table.
+ * The persistent class for the EMPLOYEES database table.
  * 
  */
 @Entity
-@Table(name="employees")
+@Table(name="EMPLOYEES")
 @NamedQuery(name="Employee.findAll", query="SELECT e FROM Employee e")
 public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="employee_id")
-	private Integer employeeId;
+	@Column(name="EMPLOYEE_ID")
+	private long employeeId;
 
-	@Column(name="commission_pct")
-	private float commissionPct;
+	@Column(name="COMMISSION_PCT")
+	private BigDecimal commissionPct;
 
 	private String email;
 
-	@Column(name="first_name")
+	@Column(name="FIRST_NAME")
 	private String firstName;
 
-	@Column(name="hire_date")
-	private Timestamp hireDate;
+	@Temporal(TemporalType.DATE)
+	@Column(name="HIRE_DATE")
+	private Date hireDate;
 
-	@Column(name="last_name")
+	@Column(name="LAST_NAME")
 	private String lastName;
 
-	@Column(name="phone_number")
+	@Column(name="PHONE_NUMBER")
 	private String phoneNumber;
 
-	private double salary;
+	private BigDecimal salary;
 
 	//bi-directional many-to-one association to Department
 	@OneToMany(mappedBy="employee")
@@ -45,12 +47,12 @@ public class Employee implements Serializable {
 
 	//bi-directional many-to-one association to Department
 	@ManyToOne
-	@JoinColumn(name="department_id")
+	@JoinColumn(name="DEPARTMENT_ID")
 	private Department department;
 
 	//bi-directional many-to-one association to Employee
 	@ManyToOne
-	@JoinColumn(name="manager_id")
+	@JoinColumn(name="MANAGER_ID")
 	private Employee employee;
 
 	//bi-directional many-to-one association to Employee
@@ -59,7 +61,7 @@ public class Employee implements Serializable {
 
 	//bi-directional many-to-one association to Job
 	@ManyToOne
-	@JoinColumn(name="job_id")
+	@JoinColumn(name="JOB_ID")
 	private Job job;
 
 	//bi-directional many-to-one association to JobHistory
@@ -69,19 +71,19 @@ public class Employee implements Serializable {
 	public Employee() {
 	}
 
-	public Integer getEmployeeId() {
+	public long getEmployeeId() {
 		return this.employeeId;
 	}
 
-	public void setEmployeeId(Integer employeeId) {
+	public void setEmployeeId(long employeeId) {
 		this.employeeId = employeeId;
 	}
 
-	public float getCommissionPct() {
+	public BigDecimal getCommissionPct() {
 		return this.commissionPct;
 	}
 
-	public void setCommissionPct(float commissionPct) {
+	public void setCommissionPct(BigDecimal commissionPct) {
 		this.commissionPct = commissionPct;
 	}
 
@@ -101,11 +103,11 @@ public class Employee implements Serializable {
 		this.firstName = firstName;
 	}
 
-	public Timestamp getHireDate() {
+	public Date getHireDate() {
 		return this.hireDate;
 	}
 
-	public void setHireDate(Timestamp hireDate) {
+	public void setHireDate(Date hireDate) {
 		this.hireDate = hireDate;
 	}
 
@@ -125,11 +127,11 @@ public class Employee implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public double getSalary() {
+	public BigDecimal getSalary() {
 		return this.salary;
 	}
 
-	public void setSalary(double salary) {
+	public void setSalary(BigDecimal salary) {
 		this.salary = salary;
 	}
 

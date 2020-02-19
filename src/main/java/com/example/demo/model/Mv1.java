@@ -1,4 +1,4 @@
-package model;
+package com.example.demo.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -7,7 +7,7 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the mv1 database table.
+ * The persistent class for the MV1 database table.
  * 
  */
 @Entity
@@ -16,34 +16,34 @@ public class Mv1 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="employee_id")
-	private Long employeeId;
+	@Column(name="EMPLOYEE_ID")
+	private long employeeId;
 
-	@Column(name="commission_pct")
+	@Column(name="COMMISSION_PCT")
 	private BigDecimal commissionPct;
 
-	@Column(name="department_id")
+	@Column(name="DEPARTMENT_ID")
 	private BigDecimal departmentId;
 
 	private String email;
 
-	@Column(name="first_name")
+	@Column(name="FIRST_NAME")
 	private String firstName;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="hire_date")
+	@Column(name="HIRE_DATE")
 	private Date hireDate;
 
-	@Column(name="job_id")
+	@Column(name="JOB_ID")
 	private String jobId;
 
-	@Column(name="last_name")
+	@Column(name="LAST_NAME")
 	private String lastName;
 
-	@Column(name="manager_id")
+	@Column(name="MANAGER_ID")
 	private BigDecimal managerId;
 
-	@Column(name="phone_number")
+	@Column(name="PHONE_NUMBER")
 	private String phoneNumber;
 
 	private BigDecimal salary;
@@ -51,11 +51,11 @@ public class Mv1 implements Serializable {
 	public Mv1() {
 	}
 
-	public Long getEmployeeId() {
+	public long getEmployeeId() {
 		return this.employeeId;
 	}
 
-	public void setEmployeeId(Long employeeId) {
+	public void setEmployeeId(long employeeId) {
 		this.employeeId = employeeId;
 	}
 

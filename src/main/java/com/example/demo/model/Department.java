@@ -1,4 +1,4 @@
-package model;
+package com.example.demo.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -6,30 +6,30 @@ import java.util.List;
 
 
 /**
- * The persistent class for the departments database table.
+ * The persistent class for the DEPARTMENTS database table.
  * 
  */
 @Entity
-@Table(name="departments")
+@Table(name="DEPARTMENTS")
 @NamedQuery(name="Department.findAll", query="SELECT d FROM Department d")
 public class Department implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="department_id")
-	private Integer departmentId;
+	@Column(name="DEPARTMENT_ID")
+	private long departmentId;
 
-	@Column(name="department_name")
+	@Column(name="DEPARTMENT_NAME")
 	private String departmentName;
 
 	//bi-directional many-to-one association to Employee
 	@ManyToOne
-	@JoinColumn(name="manager_id")
+	@JoinColumn(name="MANAGER_ID")
 	private Employee employee;
 
 	//bi-directional many-to-one association to Location
 	@ManyToOne
-	@JoinColumn(name="location_id")
+	@JoinColumn(name="LOCATION_ID")
 	private Location location;
 
 	//bi-directional many-to-one association to Employee
@@ -43,11 +43,11 @@ public class Department implements Serializable {
 	public Department() {
 	}
 
-	public Integer getDepartmentId() {
+	public long getDepartmentId() {
 		return this.departmentId;
 	}
 
-	public void setDepartmentId(Integer departmentId) {
+	public void setDepartmentId(long departmentId) {
 		this.departmentId = departmentId;
 	}
 

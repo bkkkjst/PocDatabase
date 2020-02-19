@@ -6,25 +6,25 @@ import java.util.List;
 
 
 /**
- * The persistent class for the COUNTRIES database table.
+ * The persistent class for the countries database table.
  * 
  */
 @Entity
-@Table(name="COUNTRIES")
+@Table(name="countries")
 @NamedQuery(name="Country.findAll", query="SELECT c FROM Country c")
 public class Country implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="COUNTRY_ID")
+	@Column(name="country_id")
 	private String countryId;
 
-	@Column(name="COUNTRY_NAME")
+	@Column(name="country_name")
 	private String countryName;
 
 	//bi-directional many-to-one association to Region
 	@ManyToOne
-	@JoinColumn(name="REGION_ID")
+	@JoinColumn(name="region_id")
 	private Region region;
 
 	//bi-directional many-to-one association to Location
