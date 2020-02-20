@@ -55,5 +55,7 @@ public interface JobRepository extends CrudRepository<Job, String>{
 	List<Job> findByJobTitleOrderByJobTitleDesc(@Param("title") String title);
 	
 	List<Job> findByJobTitleIgnoreCaseContainingOrderByJobTitleDesc(@Param("title") String title);
+	
+	List<Job> findByJobTitleIn(List<Job> list);
 
 }
