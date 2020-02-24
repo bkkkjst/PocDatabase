@@ -17,6 +17,7 @@ public class Job implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="JOB_ID")
 	private String jobId;
 
@@ -28,10 +29,6 @@ public class Job implements Serializable {
 
 	@Column(name="MIN_SALARY")
 	private BigDecimal minSalary;
-
-	//bi-directional many-to-one association to Employee
-	@OneToMany(mappedBy="job")
-	private List<Employee> employees;
 
 	//bi-directional many-to-one association to JobHistory
 	@OneToMany(mappedBy="job")
@@ -70,28 +67,6 @@ public class Job implements Serializable {
 
 	public void setMinSalary(BigDecimal minSalary) {
 		this.minSalary = minSalary;
-	}
-
-	public List<Employee> getEmployees() {
-		return this.employees;
-	}
-
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
-	}
-
-	public Employee addEmployee(Employee employee) {
-		getEmployees().add(employee);
-		employee.setJob(this);
-
-		return employee;
-	}
-
-	public Employee removeEmployee(Employee employee) {
-		getEmployees().remove(employee);
-		employee.setJob(null);
-
-		return employee;
 	}
 
 	public List<JobHistory> getJobHistories() {

@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
 import java.math.BigDecimal;
 
 
@@ -33,7 +32,6 @@ public class EmpDetailsView implements Serializable {
 	@Column(name="DEPARTMENT_NAME")
 	private String departmentName;
 
-	@Id
 	@Column(name="EMPLOYEE_ID")
 	private BigDecimal employeeId;
 

@@ -1,24 +1,30 @@
-package com.example.demo.model;
+package com.example.demo.repo;
 
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
- * The persistent class for the MV1 database table.
+ * The persistent class for the EMPLOYEES database table.
  * 
  */
 @Entity
-@NamedQuery(name="Mv1.findAll", query="SELECT m FROM Mv1 m")
-public class Mv1 implements Serializable {
+@Table(name="EMPLOYEES")
+@NamedQuery(name="Employee.findAll", query="SELECT e FROM Employee e")
+public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="EMPLOYEE_ID")
 	private long employeeId;
+
+	@Lob
+	@Column(name="CL_OB")
+	private String clOb;
 
 	@Column(name="COMMISSION_PCT")
 	private BigDecimal commissionPct;
@@ -41,15 +47,24 @@ public class Mv1 implements Serializable {
 	@Column(name="LAST_NAME")
 	private String lastName;
 
-	@Column(name="MANAGER_ID")
-	private BigDecimal managerId;
-
 	@Column(name="PHONE_NUMBER")
 	private String phoneNumber;
 
+	@Lob
+	private byte[] picture;
+
 	private BigDecimal salary;
 
-	public Mv1() {
+	//bi-directional many-to-one association to Employee
+	@ManyToOne
+	@JoinColumn(name="MANAGER_ID")
+	private Employee employee;
+
+	//bi-directional many-to-one association to Employee
+	@OneToMany(mappedBy="employee")
+	private List<Employee> employees;
+
+	public Employee() {
 	}
 
 	public long getEmployeeId() {
@@ -58,6 +73,14 @@ public class Mv1 implements Serializable {
 
 	public void setEmployeeId(long employeeId) {
 		this.employeeId = employeeId;
+	}
+
+	public String getClOb() {
+		return this.clOb;
+	}
+
+	public void setClOb(String clOb) {
+		this.clOb = clOb;
 	}
 
 	public BigDecimal getCommissionPct() {
@@ -116,14 +139,6 @@ public class Mv1 implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public BigDecimal getManagerId() {
-		return this.managerId;
-	}
-
-	public void setManagerId(BigDecimal managerId) {
-		this.managerId = managerId;
-	}
-
 	public String getPhoneNumber() {
 		return this.phoneNumber;
 	}
@@ -132,12 +147,50 @@ public class Mv1 implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public byte[] getPicture() {
+		return this.picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
+	}
+
 	public BigDecimal getSalary() {
 		return this.salary;
 	}
 
 	public void setSalary(BigDecimal salary) {
 		this.salary = salary;
+	}
+
+	public Employee getEmployee() {
+		return this.employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public List<Employee> getEmployees() {
+		return this.employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+
+	public Employee addEmployee(Employee employee) {
+		getEmployees().add(employee);
+		employee.setEmployee(this);
+
+		return employee;
+	}
+
+	public Employee removeEmployee(Employee employee) {
+		getEmployees().remove(employee);
+		employee.setEmployee(null);
+
+		return employee;
 	}
 
 }
