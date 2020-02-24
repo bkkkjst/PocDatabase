@@ -21,6 +21,10 @@ public class Employee implements Serializable {
 	@Column(name="EMPLOYEE_ID")
 	private long employeeId;
 
+	@Lob
+	@Column(name="CL_OB")
+	private String clOb;
+
 	@Column(name="COMMISSION_PCT")
 	private BigDecimal commissionPct;
 
@@ -38,6 +42,9 @@ public class Employee implements Serializable {
 
 	@Column(name="PHONE_NUMBER")
 	private String phoneNumber;
+
+	@Lob
+	private byte[] picture;
 
 	private BigDecimal salary;
 
@@ -77,6 +84,14 @@ public class Employee implements Serializable {
 
 	public void setEmployeeId(long employeeId) {
 		this.employeeId = employeeId;
+	}
+
+	public String getClOb() {
+		return this.clOb;
+	}
+
+	public void setClOb(String clOb) {
+		this.clOb = clOb;
 	}
 
 	public BigDecimal getCommissionPct() {
@@ -125,6 +140,14 @@ public class Employee implements Serializable {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public byte[] getPicture() {
+		return this.picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
 	}
 
 	public BigDecimal getSalary() {

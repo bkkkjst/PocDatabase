@@ -12,5 +12,7 @@ import com.example.demo.model.Country;
 public interface CountryRepository extends CrudRepository<Country, String>{
 	
 	List<Country> findByCountryName(@Param("name") String name);
+	
+	List<Country> findAllByCountryNameNotNull();
 
 }

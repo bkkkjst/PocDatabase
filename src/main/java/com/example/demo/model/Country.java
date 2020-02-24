@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -21,8 +22,14 @@ public class Country implements Serializable {
 	@Column(name="COUNTRY_NAME")
 	private String countryName;
 
-	@Column(name="REGION_ID")
-	private java.math.BigDecimal regionId;
+	//bi-directional many-to-one association to Region
+	@ManyToOne
+	@JoinColumn(name="REGION_ID")
+	private Region region;
+
+	//bi-directional many-to-one association to Location
+	@OneToMany(mappedBy="country")
+	private List<Location> locations;
 
 	public Country() {
 	}
@@ -43,12 +50,34 @@ public class Country implements Serializable {
 		this.countryName = countryName;
 	}
 
-	public java.math.BigDecimal getRegionId() {
-		return this.regionId;
+	public Region getRegion() {
+		return this.region;
 	}
 
-	public void setRegionId(java.math.BigDecimal regionId) {
-		this.regionId = regionId;
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+
+	public List<Location> getLocations() {
+		return this.locations;
+	}
+
+	public void setLocations(List<Location> locations) {
+		this.locations = locations;
+	}
+
+	public Location addLocation(Location location) {
+		getLocations().add(location);
+		location.setCountry(this);
+
+		return location;
+	}
+
+	public Location removeLocation(Location location) {
+		getLocations().remove(location);
+		location.setCountry(null);
+
+		return location;
 	}
 
 }
