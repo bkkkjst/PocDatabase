@@ -32,6 +32,7 @@ public class EmpDetailsView implements Serializable {
 	@Column(name="DEPARTMENT_NAME")
 	private String departmentName;
 
+	@Id
 	@Column(name="EMPLOYEE_ID")
 	private BigDecimal employeeId;
 
