@@ -1,7 +1,5 @@
 //package com.example.demo.controller;
-//
 //import java.util.Collection;
-//
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.PageRequest;
@@ -12,15 +10,12 @@
 //import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.RestController;
 //
-//import com.example.demo.dao.CountryRepository;
 //import com.example.demo.model.Country;
-//import com.example.demo.service.CountryService;
-//
-////@RestController
-//public class CountryController {
-//	
+//import com.example.demo.repo.CountryRepository;
+//public class EmployeesController {
+	
 //	@Autowired
-//	private CountryService mService;
+//	private CountryRepository mService;
 //	
 //	@Autowired
 //	private CountryRepository mCountryRepo;
@@ -31,10 +26,6 @@
 //		return "Hello";
 //	}
 //	
-//	@GetMapping("/getCountries")
-//	public Collection<Country> getCountries() {
-//		return mService.getAll();
-//	}
 //
 //}
 
