@@ -16,13 +16,11 @@ public class Location implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="LOCATION_ID")
 	private long locationId;
 
 	private String city;
-
-	@Column(name="COUNTRY_ID")
-	private String countryId;
 
 	@Column(name="POSTAL_CODE")
 	private String postalCode;
@@ -36,6 +34,11 @@ public class Location implements Serializable {
 	//bi-directional many-to-one association to Department
 	@OneToMany(mappedBy="location")
 	private List<Department> departments;
+
+	//bi-directional many-to-one association to Country
+	@ManyToOne
+	@JoinColumn(name="COUNTRY_ID")
+	private Country country;
 
 	public Location() {
 	}
@@ -54,14 +57,6 @@ public class Location implements Serializable {
 
 	public void setCity(String city) {
 		this.city = city;
-	}
-
-	public String getCountryId() {
-		return this.countryId;
-	}
-
-	public void setCountryId(String countryId) {
-		this.countryId = countryId;
 	}
 
 	public String getPostalCode() {
@@ -108,6 +103,14 @@ public class Location implements Serializable {
 		department.setLocation(null);
 
 		return department;
+	}
+
+	public Country getCountry() {
+		return this.country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 }

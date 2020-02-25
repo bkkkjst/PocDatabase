@@ -16,25 +16,20 @@ public class Department implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="DEPARTMENT_ID")
 	private long departmentId;
 
 	@Column(name="DEPARTMENT_NAME")
 	private String departmentName;
 
-	//bi-directional many-to-one association to Employee
-	@ManyToOne
-	@JoinColumn(name="MANAGER_ID")
-	private Employee employee;
+	@Column(name="MANAGER_ID")
+	private java.math.BigDecimal managerId;
 
 	//bi-directional many-to-one association to Location
 	@ManyToOne
 	@JoinColumn(name="LOCATION_ID")
 	private Location location;
-
-	//bi-directional many-to-one association to Employee
-	@OneToMany(mappedBy="department")
-	private List<Employee> employees;
 
 	//bi-directional many-to-one association to JobHistory
 	@OneToMany(mappedBy="department")
@@ -59,12 +54,12 @@ public class Department implements Serializable {
 		this.departmentName = departmentName;
 	}
 
-	public Employee getEmployee() {
-		return this.employee;
+	public java.math.BigDecimal getManagerId() {
+		return this.managerId;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setManagerId(java.math.BigDecimal managerId) {
+		this.managerId = managerId;
 	}
 
 	public Location getLocation() {
@@ -73,28 +68,6 @@ public class Department implements Serializable {
 
 	public void setLocation(Location location) {
 		this.location = location;
-	}
-
-	public List<Employee> getEmployees() {
-		return this.employees;
-	}
-
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
-	}
-
-	public Employee addEmployee(Employee employee) {
-		getEmployees().add(employee);
-		employee.setDepartment(this);
-
-		return employee;
-	}
-
-	public Employee removeEmployee(Employee employee) {
-		getEmployees().remove(employee);
-		employee.setDepartment(null);
-
-		return employee;
 	}
 
 	public List<JobHistory> getJobHistories() {

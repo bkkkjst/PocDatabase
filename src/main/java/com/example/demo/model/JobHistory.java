@@ -27,11 +27,6 @@ public class JobHistory implements Serializable {
 	@JoinColumn(name="DEPARTMENT_ID")
 	private Department department;
 
-	//bi-directional many-to-one association to Employee
-	@ManyToOne
-	@JoinColumn(name="EMPLOYEE_ID", insertable = false, updatable = false)
-	private Employee employee;
-
 	//bi-directional many-to-one association to Job
 	@ManyToOne
 	@JoinColumn(name="JOB_ID")
@@ -62,14 +57,6 @@ public class JobHistory implements Serializable {
 
 	public void setDepartment(Department department) {
 		this.department = department;
-	}
-
-	public Employee getEmployee() {
-		return this.employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
 	}
 
 	public Job getJob() {

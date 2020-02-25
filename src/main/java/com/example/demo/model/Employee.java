@@ -18,11 +18,20 @@ public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMPLOYEES_SEQ")
+    @SequenceGenerator(sequenceName = "employees_seq", allocationSize = 1, name = "EMPLOYEES_SEQ")
 	@Column(name="EMPLOYEE_ID")
 	private long employeeId;
 
+	@Lob
+	@Column(name="CL_OB")
+	private String clOb;
+
 	@Column(name="COMMISSION_PCT")
 	private BigDecimal commissionPct;
+
+	@Column(name="DEPARTMENT_ID")
+	private BigDecimal departmentId;
 
 	private String email;
 
@@ -33,22 +42,20 @@ public class Employee implements Serializable {
 	@Column(name="HIRE_DATE")
 	private Date hireDate;
 
+	@Column(name="JOB_ID")
+	private String jobId;
+
 	@Column(name="LAST_NAME")
 	private String lastName;
 
 	@Column(name="PHONE_NUMBER")
 	private String phoneNumber;
 
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] picture;
+
 	private BigDecimal salary;
-
-	//bi-directional many-to-one association to Department
-	@OneToMany(mappedBy="employee")
-	private List<Department> departments;
-
-	//bi-directional many-to-one association to Department
-	@ManyToOne
-	@JoinColumn(name="DEPARTMENT_ID")
-	private Department department;
 
 	//bi-directional many-to-one association to Employee
 	@ManyToOne
@@ -58,15 +65,6 @@ public class Employee implements Serializable {
 	//bi-directional many-to-one association to Employee
 	@OneToMany(mappedBy="employee")
 	private List<Employee> employees;
-
-	//bi-directional many-to-one association to Job
-	@ManyToOne
-	@JoinColumn(name="JOB_ID")
-	private Job job;
-
-	//bi-directional many-to-one association to JobHistory
-	@OneToMany(mappedBy="employee")
-	private List<JobHistory> jobHistories;
 
 	public Employee() {
 	}
@@ -79,12 +77,28 @@ public class Employee implements Serializable {
 		this.employeeId = employeeId;
 	}
 
+	public String getClOb() {
+		return this.clOb;
+	}
+
+	public void setClOb(String clOb) {
+		this.clOb = clOb;
+	}
+
 	public BigDecimal getCommissionPct() {
 		return this.commissionPct;
 	}
 
 	public void setCommissionPct(BigDecimal commissionPct) {
 		this.commissionPct = commissionPct;
+	}
+
+	public BigDecimal getDepartmentId() {
+		return this.departmentId;
+	}
+
+	public void setDepartmentId(BigDecimal departmentId) {
+		this.departmentId = departmentId;
 	}
 
 	public String getEmail() {
@@ -111,6 +125,14 @@ public class Employee implements Serializable {
 		this.hireDate = hireDate;
 	}
 
+	public String getJobId() {
+		return this.jobId;
+	}
+
+	public void setJobId(String jobId) {
+		this.jobId = jobId;
+	}
+
 	public String getLastName() {
 		return this.lastName;
 	}
@@ -127,42 +149,20 @@ public class Employee implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public byte[] getPicture() {
+		return this.picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
+	}
+
 	public BigDecimal getSalary() {
 		return this.salary;
 	}
 
 	public void setSalary(BigDecimal salary) {
 		this.salary = salary;
-	}
-
-	public List<Department> getDepartments() {
-		return this.departments;
-	}
-
-	public void setDepartments(List<Department> departments) {
-		this.departments = departments;
-	}
-
-	public Department addDepartment(Department department) {
-		getDepartments().add(department);
-		department.setEmployee(this);
-
-		return department;
-	}
-
-	public Department removeDepartment(Department department) {
-		getDepartments().remove(department);
-		department.setEmployee(null);
-
-		return department;
-	}
-
-	public Department getDepartment() {
-		return this.department;
-	}
-
-	public void setDepartment(Department department) {
-		this.department = department;
 	}
 
 	public Employee getEmployee() {
@@ -193,36 +193,6 @@ public class Employee implements Serializable {
 		employee.setEmployee(null);
 
 		return employee;
-	}
-
-	public Job getJob() {
-		return this.job;
-	}
-
-	public void setJob(Job job) {
-		this.job = job;
-	}
-
-	public List<JobHistory> getJobHistories() {
-		return this.jobHistories;
-	}
-
-	public void setJobHistories(List<JobHistory> jobHistories) {
-		this.jobHistories = jobHistories;
-	}
-
-	public JobHistory addJobHistory(JobHistory jobHistory) {
-		getJobHistories().add(jobHistory);
-		jobHistory.setEmployee(this);
-
-		return jobHistory;
-	}
-
-	public JobHistory removeJobHistory(JobHistory jobHistory) {
-		getJobHistories().remove(jobHistory);
-		jobHistory.setEmployee(null);
-
-		return jobHistory;
 	}
 
 }
