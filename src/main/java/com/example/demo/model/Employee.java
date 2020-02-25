@@ -51,6 +51,7 @@ public class Employee implements Serializable {
 	private String phoneNumber;
 
 	@Lob
+	@Basic(fetch = FetchType.LAZY)
 	private byte[] picture;
 
 	private BigDecimal salary;
