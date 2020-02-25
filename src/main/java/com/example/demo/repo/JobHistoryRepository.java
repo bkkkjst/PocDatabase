@@ -1,6 +1,5 @@
 package com.example.demo.repo;
 
-import java.sql.Clob;
 import java.util.Date;
 import java.util.List;
 
@@ -17,8 +16,16 @@ import com.example.demo.model.JobHistoryPK;
 
 public interface JobHistoryRepository extends CrudRepository<JobHistory, JobHistoryPK> {
 	
+//	Oracle
+	@Query(nativeQuery = true, value = "SELECT HR.WELCOME_MSG(:msg) FROM DUAL")
+	String callWelcomeMsg(@Param("msg") String msg);
+	
 	@Query(nativeQuery = true, value = "SELECT HR.TEXT_LENGTH(:text) FROM DUAL")
     Integer callTextLength(@Param("text") String text);
+	
+//	Postgres
+//	@Query(nativeQuery = true, value = "SELECT HR.WELCOME_MSG(:msg)")				
+//    String callWelcomeMsg(@Param("msg") String msg);
 	
 	@Transactional
 	@Procedure(procedureName = "ADD_JOB_HISTORY")
