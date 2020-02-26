@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,24 @@ public class EmployeeController {
 			e.printStackTrace();
 			return new ResponseEntity<Object>("Employee error " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
+
+	}
+	
+	@PatchMapping("/clo_b")
+	public ResponseEntity<Object> uploadClobById(@RequestParam("clob") String clob, Long employeeId) {
+		
+		Employee employee = mEmployeeService.getEmployeeById(employeeId);
+		
+		if (employee != null) {
+			employee.setClOb(clob);
+			
+			mEmployeeService.saveOrUpdate(employee);
+
+			return new ResponseEntity<Object>("Employee is updated successsfully", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Object>("EmployeeID = " + employeeId + " not match", HttpStatus.BAD_REQUEST);
+		}
+		
 
 	}
 

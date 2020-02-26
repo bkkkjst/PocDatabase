@@ -2,6 +2,9 @@ package com.example.demo.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +27,7 @@ public class Employee implements Serializable {
 	private long employeeId;
 
 	@Lob
+	@Type(type="text")
 	@Column(name="CL_OB")
 	private String clOb;
 
@@ -52,7 +56,7 @@ public class Employee implements Serializable {
 	private String phoneNumber;
 
 	@Lob
-	@Basic(fetch = FetchType.LAZY)
+	@Type(type="org.hibernate.type.BinaryType")
 	private byte[] picture;
 
 	private BigDecimal salary;
