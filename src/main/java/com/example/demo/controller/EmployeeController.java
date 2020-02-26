@@ -21,7 +21,7 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService mEmployeeService;
 
-	@PatchMapping("/upload")
+	@PatchMapping("/uploadPicture")
 	public ResponseEntity<Object> uploadPictureById(@RequestParam("file") MultipartFile file, Long employeeId) {
 
 		try {
@@ -42,6 +42,20 @@ public class EmployeeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new ResponseEntity<Object>("Employee error " + e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+
+	}
+	
+	@PatchMapping("/uploadClob")
+	public ResponseEntity<Object> uploadClobById(@RequestParam("clob") String clob, Long employeeId){
+		
+		Employee employee = mEmployeeService.getEmployeeById(employeeId);
+		if(employee != null) {
+			employee.setClOb(clob);
+			mEmployeeService.saveOrUpdate(employee);
+			return new ResponseEntity<Object>("Employee is updated successsfully", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Object>("EmployeeID = " + employeeId + " not match", HttpStatus.BAD_REQUEST);
 		}
 
 	}

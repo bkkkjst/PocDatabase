@@ -27,6 +27,7 @@ public class Employee implements Serializable {
 	private long employeeId;
 
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	@Column(name="CL_OB")
 	private String clOb;
 
