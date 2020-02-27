@@ -17,17 +17,17 @@ public class LocationController {
 	private LocationService locationService;
 	
 	
-	@GetMapping("/")
+	@GetMapping("/location")
 	public String greeting() {
 		return "Hello";
 	}
 	
-	@GetMapping("/getLocations")
+	@GetMapping("/location/getLocations")
 	public Collection<Location> getLocations() {
 		return locationService.getAll();
 	}
 
-	@PostMapping("/saveLocation")
+	@PostMapping("/location/saveLocation")
 	public void saveLocation(String streetAddr, String postalCode, String city, String stateProv) {
 		Location location = new Location();
 		location.setStreetAddress(streetAddr);
