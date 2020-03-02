@@ -29,6 +29,15 @@
 
 	<dependencies>
 
+		<!-- db driver for local -->
+		<dependency>
+			<groupId>com.tmax.tibero</groupId>
+			<artifactId>tibero-jdbc</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/resources/lib/tibero6-jdbc.jar</systemPath>
+		</dependency>
+
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
